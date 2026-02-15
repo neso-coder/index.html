@@ -1,7 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nisommmmmmmm Portfolio - Ultra Premium</title>
 <style>
+/* ---------- GENEL ---------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
+  scroll-behavior: smooth;
+  transition: background 0.5s, color 0.5s;
+  background: #f4f4f4;
+}
+
+/* ---------- DARK MODE ---------- */
+body.dark-mode {
+  background: #121212;
+  color: #eaeaea;
+}
+
+/* ---------- STICKY HEADER ---------- */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: all 0.3s;
+}
+header.dark-mode { background: rgba(18,18,18,0.95); }
+nav a {
+  margin: 0 15px;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s;
+}
+nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg,#ff6ec4,#7873f5);
+  border-radius: 2px;
+}
+nav a:hover { color:#ff6ec4; }
+
+/* ---------- DARK/LIGHT BUTTON ---------- */
+#theme-toggle {
+  background: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s;
+}
+#theme-toggle:hover { background: #666; }
+
+/* ---------- SECTIONS ---------- */
+section {
+  position: relative;
+  padding: 120px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+p { font-size: 1.1rem; max-width:600px; margin:0 auto 2rem auto; }
+
+/* ---------- ADVANCED FADE + PARALLAX ---------- */
+.advanced-fade {
+  opacity:0;
+  transform:translateY(50px) scale(0.95);
+  filter: blur(4px);
+  transition: all 1s cubic-bezier(0.6,0.05,0.28,0.91);
+}
+.advanced-fade.show {
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+}
+.advanced-fade::before {
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:0;
+  width:100%;
+  height:200%;
+  background: linear-gradient(120deg,#ff6ec4,#7873f5);
+  opacity:0.1;
+  transform:translateY(0);
+  transition: transform 0.5s, opacity 0.5s;
+  z-index:-1;
+  border-radius:20px;
+}
+.advanced-fade:hover::before {
+  transform:translateY(-10px) scale(1.05);
+  opacity:0.2;
+}
+
+/* ---------- BUTTONS ---------- */
+a.button {
+  display:inline-block;
+  background: linear-gradient(90deg,#ff6ec4,#7873f5);
+  color:#fff;
+  padding:12px 26px;
+  border-radius:30px;
+  font-weight:bold;
+  transition: all 0.3s;
+  position:relative;
+}
+a.button::after {
+  content:'➔';
+  margin-left:8px;
+  display:inline-block;
+  opacity:0;
+  transform:translateX(-10px);
+  transition: all 0.3s;
+}
+a.button:hover::after {
+  opacity:1;
+  transform:translateX(0);
+}
+a.button:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 15px rgba(255,110,196,0.5);
+}
+
+/* ---------- PROJECT CARDS ---------- */
+.project-card {
+  background: rgba(255,255,255,0.9);
+  padding:20px;
+  margin:20px auto;
+  border-radius:15px;
+  max-width:400px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  perspective:1000px;
+}
+.project-card:hover {
+  transform: rotateY(5deg) rotateX(3deg) translateY(-10px) scale(1.03);
+  box-shadow:0 15px 25px rgba(0,0,0,0.2);
+}
+body.dark-mode .project-card {
+  background: rgba(30,30,30,0.95);
+  box-shadow:0 5px 15px rgba(0,0,0,0.5);
+}
+
 /* ---------- SCROLL PROGRESS BAR ---------- */
 #progress-bar {
-  position: fixed;
+  position:fixed;
   top:0;
   left:0;
   height:5px;
@@ -11,19 +168,7 @@
   transition: width 0.2s ease-out;
 }
 
-/* ---------- SCROLL-GRADIENT BACKGROUND ---------- */
-body::before {
-  content:'';
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: linear-gradient(120deg,#ff6ec4,#7873f5);
-  opacity:0.05;
-  z-index:-1;
-  transition: background 0.5s;
-}
-
-/* ---------- PARALLAX IMAGE SECTION ---------- */
+/* ---------- PARALLAX SECTION ---------- */
 .parallax {
   background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
   background-attachment: fixed;
@@ -34,42 +179,109 @@ body::before {
   border-radius:15px;
 }
 
-/* ---------- HOVER ICON EFFECT ---------- */
-.button::after {
-  content:'➔';
-  margin-left:8px;
-  display:inline-block;
-  opacity:0;
-  transform:translateX(-10px);
-  transition: all 0.3s;
-}
-.button:hover::after {
-  opacity:1;
-  transform:translateX(0);
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:768px){
+  header { flex-direction: column; }
+  nav a { margin:10px; }
 }
 </style>
+</head>
+<body>
 
-<!-- SCROLL PROGRESS BAR -->
+<!-- PROGRESS BAR -->
 <div id="progress-bar"></div>
 
-<!-- PARALLAX SECTION (ÖRNEK) -->
-<section class="parallax"></section>
+<header id="header">
+  <div class="logo"><strong>Nisommmmmmmm</strong></div>
+  <nav>
+    <a href="#about" class="active">Hakkımda</a>
+    <a href="#projects">Projeler</a>
+    <a href="#contact">İletişim</a>
+  </nav>
+  <button id="theme-toggle">🌙</button>
+</header>
+
+<section class="advanced-fade" id="about">
+  <h2>Hakkımda</h2>
+  <p>Ben Nisommmmmmmm, web siteni ultra modern ve interaktif yapmak için buradayım 😎</p>
+  <a href="#projects" class="button">Projelerime Git</a>
+</section>
+
+<section class="advanced-fade" id="projects">
+  <h2>Projeler</h2>
+  <div id="project-container"></div>
+</section>
+
+<section class="parallax advanced-fade"></section>
+
+<section class="advanced-fade" id="contact">
+  <h2>İletişim</h2>
+  <p>Email, sosyal medya linkleri veya form buraya gelecek. Modern ve etkileşimli bir görünüm var!</p>
+  <a href="mailto:nisom@example.com" class="button">Bana Yaz</a>
+</section>
 
 <script>
-// ---------- SCROLL PROGRESS ----------
+// ---------- DARK/LIGHT MODE ----------
+const toggle = document.getElementById('theme-toggle');
+toggle.addEventListener('click', ()=>{
+  document.body.classList.toggle('dark-mode');
+  toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  document.querySelector('header').classList.toggle('dark-mode');
+});
+
+// ---------- ADVANCED FADE ON SCROLL ----------
+const advancedSections = document.querySelectorAll('.advanced-fade');
+const advancedObserver = new IntersectionObserver((entries,observer)=>{
+  entries.forEach((entry,index)=>{
+    if(entry.isIntersecting){
+      setTimeout(()=>{ entry.target.classList.add('show'); },index*200);
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.3});
+advancedSections.forEach(section=>advancedObserver.observe(section));
+
+// ---------- STICKY HEADER ACTIVE LINK ----------
+const navLinks = document.querySelectorAll('nav a');
+window.addEventListener('scroll', ()=>{
+  let fromTop = window.scrollY + 150;
+  navLinks.forEach(link=>{
+    const section = document.querySelector(link.hash);
+    if(section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop){
+      link.classList.add('active');
+    } else { link.classList.remove('active'); }
+  });
+});
+
+// ---------- DYNAMIC PROJECTS ----------
+const projects = [
+  { title:"Proje 1", desc:"İlk projem, JS animasyonları içeriyor.", link:"#"},
+  { title:"Proje 2", desc:"Web tasarım örneği, hover efektli.", link:"#"},
+  { title:"Proje 3", desc:"GitHub API entegrasyonu.", link:"#"}
+];
+const container = document.getElementById('project-container');
+projects.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = "project-card advanced-fade";
+  card.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><a href="${p.link}" class="button">İncele</a>`;
+  container.appendChild(card);
+  advancedObserver.observe(card);
+});
+
+// ---------- SCROLL PROGRESS BAR ----------
 const progressBar = document.getElementById('progress-bar');
 window.addEventListener('scroll', ()=>{
   const scrollTop = window.scrollY;
   const docHeight = document.body.scrollHeight - window.innerHeight;
   const scrollPercent = (scrollTop / docHeight) * 100;
-  progressBar.style.width = scrollPercent + '%';
+  progressBar.style.width = scrollPercent+'%';
 });
 
-// ---------- SCROLL-GRADIENT DYNAMIC CHANGE ----------
+// ---------- SCROLL GRADIENT BACKGROUND ----------
 window.addEventListener('scroll', ()=>{
   const scrolled = window.scrollY;
   const maxScroll = document.body.scrollHeight - window.innerHeight;
-  const ratio = scrolled / maxScroll;
+  const ratio = scrolled/maxScroll;
   const startColor = [255,110,196]; // #ff6ec4
   const endColor = [120,115,245];   // #7873f5
   const r = Math.floor(startColor[0] + (endColor[0]-startColor[0])*ratio);
@@ -78,3 +290,5 @@ window.addEventListener('scroll', ()=>{
   document.body.style.background = `rgb(${r},${g},${b})`;
 });
 </script>
+</body>
+</html>
