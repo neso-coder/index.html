@@ -1,12 +1,64 @@
-<h1>Benim İlk Web Sitem</h1>
-<p>Bu siteyi ben yaptım 🚀</p>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Neso'nun Sitesi</title>
+    <title>Neso - Future Tech CEO</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background: white;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #ddd;
+        }
+    </style>
 </head>
 <body>
-    <h1>Benim İlk Web Sitem</h1>
-    <p>Bu siteyi ben yaptım 🚀</p>
+
+    <div class="card">
+        <h1>Neso</h1>
+        <p>Future Tech CEO 🚀</p>
+        <button onclick="alert('Yolun başındayım ama durdurulamazım 😎')">
+            Bana Tıkla
+        </button>
+    </div>
+
 </body>
 </html>
+
