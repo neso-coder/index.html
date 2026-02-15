@@ -1,43 +1,124 @@
-<div style="margin-top: 40px; max-width: 600px;">
-    <h2>Hakkımda</h2>
-    <p>
-        15 yaşında yazılım dünyasına adım atan bir geliştiriciyim.
-        Teknolojiye, girişimciliğe ve büyük hayallere inanıyorum.
-        Hedefim gelecekte kendi teknoloji şirketimi kurmak ve
-        dünyaya değer katacak projeler üretmek.
-    </p>
-</div>
-<div style="margin-top: 50px;">
-    <h2>Projelerim</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neso - Future Tech CEO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            transition: 0.3s ease;
+        }
 
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+        body.light-mode {
+            background: white;
+            color: black;
+        }
 
-        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; width: 200px;">
-            <h3>İlk Web Sitem</h3>
-            <p>GitHub Pages ile yayınladığım ilk proje.</p>
-        </div>
+        .card {
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; width: 200px;">
-            <h3>Yakında...</h3>
-            <p>Mobil uygulama ve yeni projeler geliyor.</p>
-        </div>
+        body.light-mode .card {
+            background: rgba(0, 0, 0, 0.05);
+        }
 
-        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; width: 200px;">
-            <h3>Gelecek Hedef</h3>
-            <p>Yapay zeka ve girişim projeleri.</p>
-        </div>
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
 
+        h2 {
+            margin-top: 40px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background: white;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+
+        body.light-mode button {
+            background: black;
+            color: white;
+        }
+
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            width: 200px;
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body.light-mode .project-card {
+            background: rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>Neso</h1>
+        <p>Future Tech CEO 🚀</p>
+        <button onclick="toggleMode()">Modu Değiştir 🌗</button>
     </div>
-</div>
-<style>.light-mode {
-    background: white !important;
-    color: black !important;
-}
-</style>
-<script>
-function toggleMode() {
-    document.body.classList.toggle("light-mode");
-}
-</script>
-<button onclick="toggleMode()">Modu Değiştir 🌗
-</button>
+
+    <div class="card">
+        <h2>Hakkımda</h2>
+        <p>
+            15 yaşında yazılım dünyasına adım atan bir geliştiriciyim.
+            Teknolojiye ve büyük hedeflere inanıyorum.
+            Amacım gelecekte kendi teknoloji şirketimi kurmak.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Projelerim</h2>
+        <div class="projects">
+            <div class="project-card">
+                <h3>İlk Web Sitem</h3>
+                <p>GitHub Pages ile yayınlandı.</p>
+            </div>
+            <div class="project-card">
+                <h3>Yakında</h3>
+                <p>Mobil uygulama projeleri geliyor.</p>
+            </div>
+            <div class="project-card">
+                <h3>Gelecek</h3>
+                <p>Yapay zeka girişimleri.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle("light-mode");
+        }
+    </script>
+
+</body>
+</html>
