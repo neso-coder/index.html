@@ -3,161 +3,236 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nesom Portfolio</title>
+<title>Nisommmmmmmm Portfolio - Pro Level</title>
 <style>
-  /* --------- GENEL --------- */
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f4f4f4;
-    color: #222;
-    scroll-behavior: smooth;
-    transition: background 0.3s, color 0.3s;
-  }
+/* ---------- GENEL ---------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f4f4;
+  color: #222;
+  scroll-behavior: smooth;
+  transition: background 0.3s, color 0.3s;
+}
 
-  h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
+a { text-decoration: none; color: inherit; }
+h1, h2 { margin: 0; }
 
-  p {
-    font-size: 1.1rem;
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 2rem auto;
-  }
+/* ---------- DARK MODE ---------- */
+body.dark-mode {
+  background: #121212;
+  color: #eaeaea;
+}
 
-  /* --------- DARK MODE --------- */
-  body.dark-mode {
-    background: #121212;
-    color: #eaeaea;
-  }
+/* ---------- STICKY HEADER ---------- */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: all 0.3s;
+}
+header.dark-mode {
+  background: rgba(18,18,18,0.95);
+}
+nav a {
+  margin: 0 15px;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s;
+}
+nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg,#ff6ec4,#7873f5);
+  border-radius: 2px;
+}
+nav a:hover {
+  color: #ff6ec4;
+}
 
-  /* --------- BUTON --------- */
-  #theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #444;
-    color: #fff;
-    border: none;
-    padding: 12px 16px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.3rem;
-    z-index: 1000;
-    transition: background 0.3s;
-  }
+/* ---------- DARK/LIGHT BUTTON ---------- */
+#theme-toggle {
+  background: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s;
+}
+#theme-toggle:hover { background: #666; }
 
-  #theme-toggle:hover {
-    background: #666;
-  }
+/* ---------- SECTIONS ---------- */
+section {
+  position: relative;
+  padding: 120px 20px;
+  text-align: center;
+  overflow: hidden;
+}
+section h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+section p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem auto; }
 
-  /* --------- BÖLÜMLER ANİMASYON --------- */
-  .advanced-fade {
-    opacity: 0;
-    transform: translateY(50px) scale(0.95);
-    filter: blur(4px);
-    transition: all 1s cubic-bezier(0.6, 0.05, 0.28, 0.91);
-    padding: 100px 20px;
-    position: relative;
-  }
+/* ---------- ADVANCED FADE + PARALLAX ---------- */
+.advanced-fade {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  filter: blur(4px);
+  transition: all 1s cubic-bezier(0.6,0.05,0.28,0.91);
+}
+.advanced-fade.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+.advanced-fade::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(120deg,#ff6ec4,#7873f5);
+  opacity: 0.1;
+  transform: translateY(0);
+  transition: transform 0.5s, opacity 0.5s;
+  z-index: -1;
+  border-radius: 20px;
+}
+.advanced-fade:hover::before {
+  transform: translateY(-10px) scale(1.05);
+  opacity: 0.2;
+}
 
-  .advanced-fade.show {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
+/* ---------- BUTTONS ---------- */
+a.button {
+  display: inline-block;
+  background: linear-gradient(90deg,#ff6ec4,#7873f5);
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+a.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255,110,196,0.5);
+}
 
-  /* --------- PARALLAX BACKGROUND --------- */
-  .advanced-fade::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: 0;
-    width: 100%;
-    height: 200%;
-    background: linear-gradient(120deg, #ff6ec4, #7873f5);
-    opacity: 0.1;
-    transform: translateY(0);
-    transition: transform 0.5s;
-    z-index: -1;
-    border-radius: 20px;
-  }
+/* ---------- PROJE KARTLARI ---------- */
+.project-card {
+  background: rgba(255,255,255,0.9);
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 15px;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+body.dark-mode .project-card {
+  background: rgba(30,30,30,0.95);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
 
-  .advanced-fade:hover::before {
-    transform: translateY(-10px) scale(1.05);
-    opacity: 0.2;
-  }
-
-  /* --------- BUTON / LINK HOVER --------- */
-  a.button {
-    display: inline-block;
-    background: linear-gradient(90deg, #ff6ec4, #7873f5);
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s;
-  }
-
-  a.button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255,110,196,0.5);
-  }
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:768px){
+  header { flex-direction: column; }
+  nav a { margin: 10px; }
+}
 </style>
 </head>
 <body>
 
-<!-- TEMEL SECTIONS -->
-<section class="advanced-fade">
+<header id="header">
+  <div class="logo"><strong>Nisommmmmmmm</strong></div>
+  <nav>
+    <a href="#about" class="active">Hakkımda</a>
+    <a href="#projects">Projeler</a>
+    <a href="#contact">İletişim</a>
+  </nav>
+  <button id="theme-toggle">🌙</button>
+</header>
+
+<section class="advanced-fade" id="about">
   <h2>Hakkımda</h2>
-  <p>Ben Nesom! Web siteni modern ve interaktif yapmak için buradayım 😎</p>
-  <a href="#projeler" class="button">Projelerime Git</a>
+  <p>Ben Nisommmmmmmm, web siteni ultra modern ve interaktif yapmak için buradayım 😎</p>
+  <a href="#projects" class="button">Projelerime Git</a>
 </section>
 
-<section class="advanced-fade" id="projeler">
+<section class="advanced-fade" id="projects">
   <h2>Projeler</h2>
-  <p>Burada GitHub projelerin, tasarımların veya küçük oyunların animasyonlu şekilde görünecek.</p>
-  <a href="#iletisim" class="button">İletişim</a>
+  <div id="project-container"></div>
 </section>
 
-<section class="advanced-fade" id="iletisim">
+<section class="advanced-fade" id="contact">
   <h2>İletişim</h2>
   <p>Email, sosyal medya linkleri veya form buraya gelecek. Modern ve etkileşimli bir görünüm var!</p>
   <a href="mailto:nisom@example.com" class="button">Bana Yaz</a>
 </section>
 
-<!-- DARK/LIGHT MOD BUTONU -->
-<button id="theme-toggle">🌙</button>
-
 <script>
-  // --------- DARK/LIGHT MODE ---------
-  const toggle = document.getElementById('theme-toggle');
-  toggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+// ---------- DARK/LIGHT MODE ----------
+const toggle = document.getElementById('theme-toggle');
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  document.querySelector('header').classList.toggle('dark-mode');
+});
+
+// ---------- ADVANCED FADE ON SCROLL ----------
+const advancedSections = document.querySelectorAll('.advanced-fade');
+const advancedObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry, index) => {
+    if(entry.isIntersecting){
+      setTimeout(()=>{ entry.target.classList.add('show'); }, index*250);
+      observer.unobserve(entry.target);
+    }
   });
+}, {threshold:0.3});
+advancedSections.forEach(section => advancedObserver.observe(section));
 
-  // --------- ADVANCED FADE ON SCROLL ---------
-  const advancedSections = document.querySelectorAll('.advanced-fade');
-
-  const advancedObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('show');
-        }, index * 250); // her bölüm 0.25 saniye gecikmeli
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  advancedSections.forEach(section => {
-    advancedObserver.observe(section);
+// ---------- STICKY HEADER ACTIVE LINK ----------
+const navLinks = document.querySelectorAll('nav a');
+window.addEventListener('scroll', ()=>{
+  let fromTop = window.scrollY + 150;
+  navLinks.forEach(link=>{
+    const section = document.querySelector(link.hash);
+    if(section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop){
+      link.classList.add('active');
+    } else { link.classList.remove('active'); }
   });
+});
+
+// ---------- DYNAMIC PROJECTS ----------
+const projects = [
+  { title: "Proje 1", desc: "İlk projem, JS animasyonları içeriyor.", link:"#"},
+  { title: "Proje 2", desc: "Web tasarım örneği, hover efektli.", link:"#"},
+  { title: "Proje 3", desc: "GitHub API entegrasyonu.", link:"#"}
+];
+const container = document.getElementById('project-container');
+projects.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = "project-card advanced-fade";
+  card.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><a href="${p.link}" class="button">İncele</a>`;
+  container.appendChild(card);
+  advancedObserver.observe(card);
+});
 </script>
+
 </body>
 </html>
