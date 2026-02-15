@@ -234,14 +234,17 @@ window.addEventListener('scroll', ()=>{
   });
 });
 
-// ---------- PROJECTS FULL ULTRA PREMIUM ----------
+// ---------- PROJECTS FULL ULTRA PREMIUM (9 PROJE) ----------
 const projects = [
   { title:"Proje 1", desc:"İlk projem, JS animasyonları içeriyor. Scroll ve hover animasyonlu!", link:"#", gradient:"linear-gradient(135deg,#ff6ec4,#7873f5)", glow:"rgba(255,110,196,0.5)"},
   { title:"Proje 2", desc:"Web tasarım örneği, hover efektli, tilt + glow içeriyor.", link:"#", gradient:"linear-gradient(135deg,#6edcff,#6f42c1)", glow:"rgba(110,220,255,0.5)"},
   { title:"Proje 3", desc:"GitHub API entegrasyonu, interaktif hover animasyonu ile.", link:"#", gradient:"linear-gradient(135deg,#ffb347,#ffcc33)", glow:"rgba(255,179,71,0.5)"},
   { title:"Proje 4", desc:"Ultra premium animasyonlu proje. Scroll ve tilt + glow ile.", link:"#", gradient:"linear-gradient(135deg,#00c6ff,#0072ff)", glow:"rgba(0,198,255,0.5)"},
   { title:"Proje 5", desc:"Scroll + hover efekti olan son proje. Animasyonlu WOW!", link:"#", gradient:"linear-gradient(135deg,#f7971e,#ffd200)", glow:"rgba(247,151,30,0.5)"},
-  { title:"Proje 6", desc:"Ekstra premium proje, tilt + glow + scroll fade efektli.", link:"#", gradient:"linear-gradient(135deg,#8e2de2,#4a00e0)", glow:"rgba(142,45,226,0.5)"}
+  { title:"Proje 6", desc:"Ekstra premium proje, tilt + glow + scroll fade efektli.", link:"#", gradient:"linear-gradient(135deg,#8e2de2,#4a00e0)", glow:"rgba(142,45,226,0.5)"},
+  { title:"Proje 7", desc:"Yeni eklenen proje, hover + tilt + glow animasyonlu.", link:"#", gradient:"linear-gradient(135deg,#ff4b1f,#ff9068)", glow:"rgba(255,75,31,0.5)"},
+  { title:"Proje 8", desc:"Yeni proje, ultra premium interaktif kart.", link:"#", gradient:"linear-gradient(135deg,#36d1dc,#5b86e5)", glow:"rgba(54,209,220,0.5)"},
+  { title:"Proje 9", desc:"Son eklenen premium proje, tilt + scroll fade + glow içeriyor.", link:"#", gradient:"linear-gradient(135deg,#fc5c7d,#6a82fb)", glow:"rgba(252,92,125,0.5)"}
 ];
 
 const container = document.getElementById('project-container');
@@ -321,7 +324,7 @@ class Particle {
 }
 function initParticles(){
   particlesArray=[];
-  for(let i=0;i<100;i++){particlesArray.push(new Particle());}
+  for(let i=0;i<150;i++){particlesArray.push(new Particle());}
 }
 function animateParticles(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
