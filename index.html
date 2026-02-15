@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nisommmmmmmm Ultra Premium Portfolio</title>
+<title>Nisommmmmmmm Ultra CEO Portfolio</title>
 <style>
 /* ---------- GENEL ---------- */
 body {
@@ -17,7 +17,7 @@ body {
 }
 body.dark-mode { background: #121212; color: #eaeaea; }
 
-/* ---------- STICKY HEADER ---------- */
+/* ---------- HEADER ---------- */
 header {
   position: sticky;
   top: 0;
@@ -50,7 +50,7 @@ nav a.active::after {
 }
 nav a:hover { color:#ff6ec4; }
 
-/* ---------- DARK/LIGHT BUTTON ---------- */
+/* ---------- THEME BUTTON ---------- */
 #theme-toggle {
   background: #444;
   color: #fff;
@@ -63,7 +63,7 @@ nav a:hover { color:#ff6ec4; }
 }
 #theme-toggle:hover { background: #666; }
 
-/* ---------- SCROLL PROGRESS BAR ---------- */
+/* ---------- SCROLL PROGRESS ---------- */
 #progress-bar {
   position:fixed;
   top:0;
@@ -75,7 +75,7 @@ nav a:hover { color:#ff6ec4; }
   transition: width 0.2s ease-out;
 }
 
-/* ---------- ADVANCED FADE + PARALLAX + 3D TILT ---------- */
+/* ---------- ADVANCED FADE + 3D TILT ---------- */
 .advanced-fade {
   opacity:0;
   transform:translateY(50px) scale(0.95);
@@ -89,7 +89,7 @@ nav a:hover { color:#ff6ec4; }
   filter:blur(0);
 }
 
-/* ---------- BUTTONS ---------- */
+/* ---------- BUTTON ---------- */
 a.button {
   display:inline-block;
   background: linear-gradient(90deg,#ff6ec4,#7873f5);
@@ -108,14 +108,8 @@ a.button::after {
   transform:translateX(-10px);
   transition: all 0.3s;
 }
-a.button:hover::after {
-  opacity:1;
-  transform:translateX(0);
-}
-a.button:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 15px rgba(255,110,196,0.5);
-}
+a.button:hover::after { opacity:1; transform:translateX(0); }
+a.button:hover { transform:scale(1.05); box-shadow:0 0 15px rgba(255,110,196,0.5); }
 
 /* ---------- PROJECT CARDS ---------- */
 .project-card {
@@ -127,6 +121,7 @@ a.button:hover {
   box-shadow:0 5px 15px rgba(0,0,0,0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   perspective:1000px;
+  cursor:pointer;
 }
 .project-card:hover {
   transform: rotateY(8deg) rotateX(5deg) translateY(-15px) scale(1.05);
@@ -137,7 +132,24 @@ body.dark-mode .project-card {
   box-shadow:0 5px 15px rgba(0,0,0,0.5);
 }
 
-/* ---------- PARALLAX SECTION ---------- */
+/* ---------- MODAL ---------- */
+#modal {
+  position:fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+}
+#modal-content {
+  background:#fff; padding:30px; border-radius:15px;
+  max-width:600px; text-align:center;
+}
+body.dark-mode #modal-content { background:#222; color:#fff; }
+#modal-close { cursor:pointer; font-weight:bold; float:right; font-size:1.2rem; }
+
+/* ---------- PARALLAX ---------- */
 .parallax {
   background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
   background-attachment: fixed;
@@ -148,50 +160,29 @@ body.dark-mode .project-card {
   border-radius:15px;
 }
 
-/* ---------- FLOATING SOCIAL ICONS ---------- */
+/* ---------- FLOATING SOCIALS ---------- */
 .social-icons {
-  position:fixed;
-  top:50%;
-  right:10px;
+  position:fixed; top:50%; right:10px;
   transform:translateY(-50%);
-  display:flex;
-  flex-direction:column;
-  gap:15px;
+  display:flex; flex-direction:column; gap:15px;
   z-index:1500;
 }
 .social-icons a {
-  width:40px;
-  height:40px;
-  background:#fff;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  color:#333;
-  font-size:1.2rem;
+  width:40px; height:40px; background:#fff;
+  border-radius:50%; display:flex;
+  align-items:center; justify-content:center;
+  text-decoration:none; color:#333; font-size:1.2rem;
   box-shadow:0 3px 8px rgba(0,0,0,0.2);
   transition:all 0.3s;
 }
-.social-icons a:hover {
-  transform:scale(1.2);
-  box-shadow:0 6px 15px rgba(0,0,0,0.4);
-}
+.social-icons a:hover { transform:scale(1.2); box-shadow:0 6px 15px rgba(0,0,0,0.4); }
 
-/* ---------- RESPONSIVE ---------- */
-@media(max-width:768px){
-  header { flex-direction: column; }
-  nav a { margin:10px; }
-  .social-icons { display:none; }
-}
+@media(max-width:768px){ header{flex-direction:column;} nav a{margin:10px;} .social-icons{display:none;} }
 </style>
 </head>
 <body>
 
-<!-- PARTICLE BACKGROUND -->
 <canvas id="particles"></canvas>
-
-<!-- SCROLL PROGRESS BAR -->
 <div id="progress-bar"></div>
 
 <header id="header">
@@ -204,7 +195,6 @@ body.dark-mode .project-card {
   <button id="theme-toggle">🌙</button>
 </header>
 
-<!-- FLOATING SOCIALS -->
 <div class="social-icons">
   <a href="https://github.com/username" target="_blank">🐱</a>
   <a href="https://linkedin.com/in/username" target="_blank">💼</a>
@@ -230,8 +220,18 @@ body.dark-mode .project-card {
   <a href="mailto:nisom@example.com" class="button">Bana Yaz</a>
 </section>
 
+<!-- MODAL -->
+<div id="modal">
+  <div id="modal-content">
+    <span id="modal-close">X</span>
+    <h3 id="modal-title"></h3>
+    <p id="modal-desc"></p>
+    <a href="#" id="modal-link" class="button">Projeyi İncele</a>
+  </div>
+</div>
+
 <script>
-// ---------- THEME & LOCALSTORAGE ----------
+// ---------- THEME + LOCALSTORAGE ----------
 const toggle = document.getElementById('theme-toggle');
 if(localStorage.getItem('theme')==='dark'){ document.body.classList.add('dark-mode'); toggle.textContent='☀️'; }
 toggle.addEventListener('click', ()=>{
@@ -241,7 +241,7 @@ toggle.addEventListener('click', ()=>{
   localStorage.setItem('theme', dark ? 'dark' : 'light');
 });
 
-// ---------- ADVANCED FADE ON SCROLL ----------
+// ---------- ADVANCED FADE ----------
 const advancedSections = document.querySelectorAll('.advanced-fade');
 const advancedObserver = new IntersectionObserver((entries,observer)=>{
   entries.forEach((entry,index)=>{
@@ -253,7 +253,7 @@ const advancedObserver = new IntersectionObserver((entries,observer)=>{
 },{threshold:0.3});
 advancedSections.forEach(section=>advancedObserver.observe(section));
 
-// ---------- STICKY HEADER ACTIVE LINK ----------
+// ---------- NAV ACTIVE ----------
 const navLinks = document.querySelectorAll('nav a');
 window.addEventListener('scroll', ()=>{
   let fromTop = window.scrollY + 150;
@@ -278,14 +278,20 @@ const projects = [
   { title:"Proje 9", desc:"Son eklenen premium proje, tilt + scroll fade + glow içeriyor.", link:"#", gradient:"linear-gradient(135deg,#fc5c7d,#6a82fb)", glow:"rgba(252,92,125,0.5)"}
 ];
 
-// ---------- CREATE PROJECT CARDS ----------
+// ---------- CREATE PROJECT CARDS + MODAL ----------
 const container = document.getElementById('project-container');
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalDesc = document.getElementById('modal-desc');
+const modalLink = document.getElementById('modal-link');
+const modalClose = document.getElementById('modal-close');
+
 projects.forEach(p => {
   const card = document.createElement('div');
   card.className = "project-card advanced-fade";
   card.style.background = p.gradient;
   card.style.boxShadow = `0 10px 30px ${p.glow}`;
-  card.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><a href="${p.link}" class="button">İncele</a>`;
+  card.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p>`;
 
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
@@ -295,13 +301,21 @@ projects.forEach(p => {
     const rotateY = ((x / rect.width) - 0.5) * 15;
     card.style.transform = `rotateX(${ -rotateX }deg) rotateY(${ rotateY }deg) scale(1.05)`;
   });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+  card.addEventListener('mouseleave', () => { card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)'; });
+
+  card.addEventListener('click', ()=>{
+    modal.style.display='flex';
+    modalTitle.textContent = p.title;
+    modalDesc.textContent = p.desc;
+    modalLink.href = p.link;
   });
 
   container.appendChild(card);
   advancedObserver.observe(card);
 });
+
+modalClose.addEventListener('click', ()=>{ modal.style.display='none'; });
+window.addEventListener('click',(e)=>{ if(e.target===modal){ modal.style.display='none'; } });
 
 // ---------- SCROLL PROGRESS BAR ----------
 const progressBar = document.getElementById('progress-bar');
@@ -312,13 +326,13 @@ window.addEventListener('scroll', ()=>{
   progressBar.style.width = scrollPercent+'%';
 });
 
-// ---------- SCROLL GRADIENT BACKGROUND ----------
+// ---------- SCROLL GRADIENT ----------
 window.addEventListener('scroll', ()=>{
   const scrolled = window.scrollY;
   const maxScroll = document.body.scrollHeight - window.innerHeight;
   const ratio = scrolled/maxScroll;
-  const startColor = [255,110,196]; // #ff6ec4
-  const endColor = [120,115,245];   // #7873f5
+  const startColor = [255,110,196];
+  const endColor = [120,115,245];
   const r = Math.floor(startColor[0] + (endColor[0]-startColor[0])*ratio);
   const g = Math.floor(startColor[1] + (endColor[1]-startColor[1])*ratio);
   const b = Math.floor(startColor[2] + (endColor[2]-startColor[2])*ratio);
@@ -331,47 +345,20 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let particlesArray = [];
-class Particle {
-  constructor(){
-    this.x = Math.random()*canvas.width;
-    this.y = Math.random()*canvas.height;
-    this.size = Math.random()*2 + 1;
-    this.speedX = Math.random()*0.5-0.25;
-    this.speedY = Math.random()*0.5-0.25;
-  }
-  update(){
-    this.x += this.speedX;
-    this.y += this.speedY;
-    if(this.x > canvas.width) this.x =0;
-    if(this.x <0) this.x=canvas.width;
-    if(this.y>canvas.height)this.y=0;
-    if(this.y<0) this.y=canvas.height;
-  }
-  draw(){
-    ctx.fillStyle='rgba(255,110,196,0.7)';
-    ctx.beginPath();
-    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-    ctx.fill();
-  }
+class Particle{
+  constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.size=Math.random()*2+1; this.speedX=Math.random()*0.5-0.25; this.speedY=Math.random()*0.5-0.25; }
+  update(){ this.x+=this.speedX; this.y+=this.speedY; if(this.x>canvas.width)this.x=0;if(this.x<0)this.x=canvas.width;if(this.y>canvas.height)this.y=0;if(this.y<0)this.y=canvas.height; }
+  draw(){ ctx.fillStyle='rgba(255,110,196,0.7)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
 }
-function initParticles(){
-  particlesArray=[];
-  for(let i=0;i<150;i++){particlesArray.push(new Particle());}
-}
-function animateParticles(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particlesArray.forEach(p=>{p.update();p.draw();});
-  requestAnimationFrame(animateParticles);
-}
+function initParticles(){ particlesArray=[]; for(let i=0;i<150;i++){particlesArray.push(new Particle());} }
+function animateParticles(){ ctx.clearRect(0,0,canvas.width,canvas.height); particlesArray.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animateParticles); }
 window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight; initParticles();});
 initParticles();
 animateParticles();
 
-// ---------- HOVER SOUND EFFECT ----------
+// ---------- HOVER SOUND ----------
 const hoverSound = new Audio('https://www.soundjay.com/buttons/sounds/button-16.mp3');
-document.querySelectorAll('.button, .project-card').forEach(el=>{
-  el.addEventListener('mouseenter', ()=>{ hoverSound.currentTime=0; hoverSound.play(); });
-});
+document.querySelectorAll('.button,.project-card').forEach(el=>{ el.addEventListener('mouseenter',()=>{ hoverSound.currentTime=0; hoverSound.play(); }); });
 </script>
 </body>
 </html>
