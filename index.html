@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nisommmmmmmm Portfolio - Ultra Premium</title>
+<title>Nisommmmmmmm Ultra Premium Portfolio</title>
 <style>
 /* ---------- GENEL ---------- */
 body {
@@ -13,6 +13,7 @@ body {
   scroll-behavior: smooth;
   transition: background 0.5s, color 0.5s;
   background: #f4f4f4;
+  overflow-x: hidden;
 }
 
 /* ---------- DARK MODE ---------- */
@@ -67,22 +68,25 @@ nav a:hover { color:#ff6ec4; }
 }
 #theme-toggle:hover { background: #666; }
 
-/* ---------- SECTIONS ---------- */
-section {
-  position: relative;
-  padding: 120px 20px;
-  text-align: center;
-  overflow: hidden;
+/* ---------- SCROLL PROGRESS BAR ---------- */
+#progress-bar {
+  position:fixed;
+  top:0;
+  left:0;
+  height:5px;
+  background: linear-gradient(90deg,#ff6ec4,#7873f5);
+  width:0%;
+  z-index:1500;
+  transition: width 0.2s ease-out;
 }
-h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-p { font-size: 1.1rem; max-width:600px; margin:0 auto 2rem auto; }
 
-/* ---------- ADVANCED FADE + PARALLAX ---------- */
+/* ---------- ADVANCED FADE + PARALLAX + 3D TILT ---------- */
 .advanced-fade {
   opacity:0;
   transform:translateY(50px) scale(0.95);
   filter: blur(4px);
   transition: all 1s cubic-bezier(0.6,0.05,0.28,0.91);
+  perspective:1000px;
 }
 .advanced-fade.show {
   opacity:1;
@@ -148,24 +152,21 @@ a.button:hover {
   perspective:1000px;
 }
 .project-card:hover {
-  transform: rotateY(5deg) rotateX(3deg) translateY(-10px) scale(1.03);
-  box-shadow:0 15px 25px rgba(0,0,0,0.2);
+  transform: rotateY(8deg) rotateX(5deg) translateY(-15px) scale(1.05);
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
 }
 body.dark-mode .project-card {
   background: rgba(30,30,30,0.95);
   box-shadow:0 5px 15px rgba(0,0,0,0.5);
 }
 
-/* ---------- SCROLL PROGRESS BAR ---------- */
-#progress-bar {
-  position:fixed;
-  top:0;
-  left:0;
-  height:5px;
-  background: linear-gradient(90deg,#ff6ec4,#7873f5);
-  width:0%;
-  z-index:1500;
-  transition: width 0.2s ease-out;
+/* ---------- PARTICLE BACKGROUND ---------- */
+#particles {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  z-index:-2;
+  pointer-events:none;
 }
 
 /* ---------- PARALLAX SECTION ---------- */
@@ -188,7 +189,10 @@ body.dark-mode .project-card {
 </head>
 <body>
 
-<!-- PROGRESS BAR -->
+<!-- PARTICLE BACKGROUND -->
+<canvas id="particles"></canvas>
+
+<!-- SCROLL PROGRESS BAR -->
 <div id="progress-bar"></div>
 
 <header id="header">
@@ -289,6 +293,48 @@ window.addEventListener('scroll', ()=>{
   const b = Math.floor(startColor[2] + (endColor[2]-startColor[2])*ratio);
   document.body.style.background = `rgb(${r},${g},${b})`;
 });
+
+// ---------- PARTICLE BACKGROUND ----------
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let particlesArray = [];
+class Particle {
+  constructor(){
+    this.x = Math.random()*canvas.width;
+    this.y = Math.random()*canvas.height;
+    this.size = Math.random()*2 + 1;
+    this.speedX = Math.random()*0.5-0.25;
+    this.speedY = Math.random()*0.5-0.25;
+  }
+  update(){
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if(this.x > canvas.width) this.x =0;
+    if(this.x <0) this.x=canvas.width;
+    if(this.y>canvas.height)this.y=0;
+    if(this.y<0) this.y=canvas.height;
+  }
+  draw(){
+    ctx.fillStyle='rgba(255,110,196,0.7)';
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fill();
+  }
+}
+function initParticles(){
+  particlesArray=[];
+  for(let i=0;i<100;i++){particlesArray.push(new Particle());}
+}
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particlesArray.forEach(p=>{p.update();p.draw();});
+  requestAnimationFrame(animateParticles);
+}
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight; initParticles();});
+initParticles();
+animateParticles();
 </script>
 </body>
 </html>
