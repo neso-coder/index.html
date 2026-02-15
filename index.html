@@ -4,12 +4,17 @@
 <head>
     <title>Neso Code</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
             font-family: Arial, sans-serif;
-            text-align: center;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: white;
             transition: 0.3s ease;
@@ -20,43 +25,53 @@
             color: black;
         }
 
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        body.light-mode nav a {
+            color: black;
+        }
+
+        section {
+            padding: 120px 20px 80px 20px;
+            text-align: center;
+        }
+
         .card {
-            margin: 40px auto;
+            max-width: 600px;
+            margin: auto;
             padding: 30px;
             border-radius: 20px;
-            width: 90%;
-            max-width: 600px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.1);
         }
 
         body.light-mode .card {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            margin-top: 40px;
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            background: white;
-            color: #1e3c72;
-            font-weight: bold;
-        }
-
-        body.light-mode button {
-            background: black;
-            color: white;
+            background: rgba(0,0,0,0.05);
         }
 
         .projects {
@@ -71,23 +86,50 @@
             width: 200px;
             padding: 15px;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.1);
         }
 
         body.light-mode .project-card {
-            background: rgba(0, 0, 0, 0.05);
+            background: rgba(0,0,0,0.05);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        footer {
+            padding: 30px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
         }
     </style>
 </head>
 
 <body>
 
+<header>
+    <h1>Neso Code</h1>
+    <nav>
+        <a href="#anasayfa">Ana Sayfa</a>
+        <a href="#hakkimda">Hakkımda</a>
+        <a href="#projeler">Projelerim</a>
+    </nav>
+</header>
+
+<section id="anasayfa">
     <div class="card">
-        <h1>Neso Code</h1>
-        <p>Kod Yazıyorum, İz Bırakıyorum.</p>
+        <h2>Kod Yazıyorum, İz Bırakıyorum.</h2>
         <button onclick="toggleMode()">Modu Değiştir 🌗</button>
     </div>
+</section>
 
+<section id="hakkimda">
     <div class="card">
         <h2>Hakkımda</h2>
         <p>
@@ -96,7 +138,9 @@
             Amacım gelecekte kendi teknoloji şirketimi kurmak.
         </p>
     </div>
+</section>
 
+<section id="projeler">
     <div class="card">
         <h2>Projelerim</h2>
         <div class="projects">
@@ -114,13 +158,17 @@
             </div>
         </div>
     </div>
+</section>
 
-    <script>
-        function toggleMode() {
-            document.body.classList.toggle("light-mode");
-        }
-    </script>
+<footer>
+    © 2026 Neso Code
+</footer>
+
+<script>
+function toggleMode() {
+    document.body.classList.toggle("light-mode");
+}
+</script>
 
 </body>
-
 </html>
