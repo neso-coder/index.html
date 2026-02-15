@@ -1,174 +1,163 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="tr">
 <head>
-    <title>Neso Code</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nisommmmmmmm Portfolio</title>
+<style>
+  /* --------- GENEL --------- */
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+    color: #222;
+    scroll-behavior: smooth;
+    transition: background 0.3s, color 0.3s;
+  }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            transition: 0.3s ease;
-        }
+  p {
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+  }
 
-        body.light-mode {
-            background: white;
-            color: black;
-        }
+  /* --------- DARK MODE --------- */
+  body.dark-mode {
+    background: #121212;
+    color: #eaeaea;
+  }
 
-        /* HEADER */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
-        }
+  /* --------- BUTON --------- */
+  #theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.3rem;
+    z-index: 1000;
+    transition: background 0.3s;
+  }
 
-        header h1 {
-            font-size: 20px;
-        }
+  #theme-toggle:hover {
+    background: #666;
+  }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 15px;
-            font-size: 14px;
-        }
+  /* --------- BÖLÜMLER ANİMASYON --------- */
+  .advanced-fade {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    filter: blur(4px);
+    transition: all 1s cubic-bezier(0.6, 0.05, 0.28, 0.91);
+    padding: 100px 20px;
+    position: relative;
+  }
 
-        nav a:hover {
-            opacity: 0.7;
-        }
+  .advanced-fade.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
 
-        body.light-mode nav a {
-            color: black;
-        }
+  /* --------- PARALLAX BACKGROUND --------- */
+  .advanced-fade::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(120deg, #ff6ec4, #7873f5);
+    opacity: 0.1;
+    transform: translateY(0);
+    transition: transform 0.5s;
+    z-index: -1;
+    border-radius: 20px;
+  }
 
-        section {
-            padding: 120px 20px 80px 20px;
-            text-align: center;
-        }
+  .advanced-fade:hover::before {
+    transform: translateY(-10px) scale(1.05);
+    opacity: 0.2;
+  }
 
-        .card {
-            max-width: 600px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.1);
-        }
+  /* --------- BUTON / LINK HOVER --------- */
+  a.button {
+    display: inline-block;
+    background: linear-gradient(90deg, #ff6ec4, #7873f5);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
 
-        body.light-mode .card {
-            background: rgba(0,0,0,0.05);
-        }
-
-        .projects {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .project-card {
-            width: 200px;
-            padding: 15px;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.1);
-        }
-
-        body.light-mode .project-card {
-            background: rgba(0,0,0,0.05);
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        footer {
-            padding: 30px;
-            text-align: center;
-            font-size: 14px;
-            opacity: 0.7;
-        }
-    </style>
+  a.button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255,110,196,0.5);
+  }
+</style>
 </head>
-
 <body>
 
-<header>
-    <h1>Neso Code</h1>
-    <nav>
-        <a href="#anasayfa">Ana Sayfa</a>
-        <a href="#hakkimda">Hakkımda</a>
-        <a href="#projeler">Projelerim</a>
-    </nav>
-</header>
-
-<section id="anasayfa">
-    <div class="card">
-        <h2>Kod Yazıyorum, İz Bırakıyorum.</h2>
-        <button onclick="toggleMode()">Modu Değiştir 🌗</button>
-    </div>
+<!-- TEMEL SECTIONS -->
+<section class="advanced-fade">
+  <h2>Hakkımda</h2>
+  <p>Ben Nisommmmmmmm! Web siteni modern ve interaktif yapmak için buradayım 😎</p>
+  <a href="#projeler" class="button">Projelerime Git</a>
 </section>
 
-<section id="hakkimda">
-    <div class="card">
-        <h2>Hakkımda</h2>
-        <p>
-            15 yaşında yazılım dünyasına adım atan bir geliştiriciyim.
-            Teknolojiye ve büyük hedeflere inanıyorum.
-            Amacım gelecekte kendi teknoloji şirketimi kurmak.
-        </p>
-    </div>
+<section class="advanced-fade" id="projeler">
+  <h2>Projeler</h2>
+  <p>Burada GitHub projelerin, tasarımların veya küçük oyunların animasyonlu şekilde görünecek.</p>
+  <a href="#iletisim" class="button">İletişim</a>
 </section>
 
-<section id="projeler">
-    <div class="card">
-        <h2>Projelerim</h2>
-        <div class="projects">
-            <div class="project-card">
-                <h3>İlk Web Sitem</h3>
-                <p>GitHub Pages ile yayınlandı.</p>
-            </div>
-            <div class="project-card">
-                <h3>Yakında</h3>
-                <p>Mobil uygulama projeleri geliyor.</p>
-            </div>
-            <div class="project-card">
-                <h3>Gelecek</h3>
-                <p>Yapay zeka girişimleri.</p>
-            </div>
-        </div>
-    </div>
+<section class="advanced-fade" id="iletisim">
+  <h2>İletişim</h2>
+  <p>Email, sosyal medya linkleri veya form buraya gelecek. Modern ve etkileşimli bir görünüm var!</p>
+  <a href="mailto:nisom@example.com" class="button">Bana Yaz</a>
 </section>
 
-<footer>
-    © 2026 Neso Code
-</footer>
+<!-- DARK/LIGHT MOD BUTONU -->
+<button id="theme-toggle">🌙</button>
 
 <script>
-function toggleMode() {
-    document.body.classList.toggle("light-mode");
-}
-</script>
+  // --------- DARK/LIGHT MODE ---------
+  const toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+  });
 
+  // --------- ADVANCED FADE ON SCROLL ---------
+  const advancedSections = document.querySelectorAll('.advanced-fade');
+
+  const advancedObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('show');
+        }, index * 250); // her bölüm 0.25 saniye gecikmeli
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  advancedSections.forEach(section => {
+    advancedObserver.observe(section);
+  });
+</script>
 </body>
 </html>
