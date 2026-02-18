@@ -3,64 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neso | Premium Dark</title>
+<title>Neso | 3D Experience</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
 }
 
 body{
+overflow:hidden;
 background:#050510;
-color:white;
-overflow-x:hidden;
-cursor:none;
-}
-
-/* LOADING SCREEN */
-.loader{
-position:fixed;
-width:100%;
-height:100%;
-background:#050510;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
 font-family:'Orbitron',sans-serif;
-font-size:2rem;
-letter-spacing:3px;
+color:white;
 }
 
-.loader span{
-color:#8a2be2;
-animation:blink 1s infinite alternate;
-}
-
-@keyframes blink{
-from{opacity:0.3;}
-to{opacity:1;}
-}
-
-/* CUSTOM CURSOR */
-.cursor{
-position:fixed;
-width:20px;
-height:20px;
-border-radius:50%;
-background:#00ffff;
-pointer-events:none;
-transform:translate(-50%,-50%);
-mix-blend-mode:screen;
-box-shadow:0 0 20px #00ffff,0 0 40px #8a2be2;
-}
-
-/* PARTICLES */
 canvas{
 position:fixed;
 top:0;
@@ -68,150 +28,99 @@ left:0;
 z-index:-1;
 }
 
-/* HERO */
-header{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+.content{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 text-align:center;
-font-family:'Orbitron',sans-serif;
 }
 
-header h1{
+h1{
 font-size:3rem;
 background:linear-gradient(90deg,#8a2be2,#00ffff);
 -webkit-background-clip:text;
 color:transparent;
 }
 
-/* CARDS */
-section{
-padding:100px 20px;
-text-align:center;
+p{
+margin-top:20px;
+color:#aaa;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-max-width:1000px;
-margin:auto;
+.btn{
+margin-top:30px;
+padding:15px 40px;
+border:none;
+border-radius:40px;
+background:linear-gradient(90deg,#8a2be2,#00ffff);
+color:white;
+cursor:pointer;
+font-size:1rem;
+transition:0.3s;
 }
 
-.card{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,0.1);
-padding:40px;
-border-radius:20px;
-transition:0.4s;
-transform-style:preserve-3d;
-}
-
-.card:hover{
-box-shadow:0 0 40px #8a2be2;
-}
-
-footer{
-padding:40px;
-text-align:center;
-color:#777;
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 30px #8a2be2;
 }
 </style>
 </head>
 
 <body>
 
-<div class="loader">YÜKLENİYOR<span>...</span></div>
-<div class="cursor"></div>
-<canvas id="particles"></canvas>
-
-<header>
-<h1>Dila Nisa</h1>
-<p>Premium Dark Experience</p>
-</header>
-
-<section>
-<h2 style="margin-bottom:40px;color:#8a2be2;">Uzmanlık Alanlarım</h2>
-<div class="grid">
-<div class="card">✨ Modern UI</div>
-<div class="card">⚡ JavaScript</div>
-<div class="card">🚀 Responsive</div>
-<div class="card">🖤 Dark Mode</div>
+<div class="content">
+<h1>Neso</h1>
+<p>3D Premium Dark Experience</p>
+<button class="btn">Keşfet</button>
 </div>
-</section>
 
-<footer>
-© 2026 Neso | Premium Experience
-</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-/* LOADER */
-window.addEventListener("load",()=>{
-setTimeout(()=>{
-document.querySelector(".loader").style.display="none";
-},1500);
-});
-
-/* CUSTOM CURSOR */
-const cursor=document.querySelector(".cursor");
-document.addEventListener("mousemove",e=>{
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
-});
-
-/* 3D TILT */
-document.querySelectorAll(".card").forEach(card=>{
-card.addEventListener("mousemove",(e)=>{
-let x=e.offsetX;
-let y=e.offsetY;
-let centerX=card.offsetWidth/2;
-let centerY=card.offsetHeight/2;
-let rotateX=((y-centerY)/20);
-let rotateY=((centerX-x)/20);
-card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-});
-card.addEventListener("mouseleave",()=>{
-card.style.transform="rotateX(0) rotateY(0)";
-});
+const geometry = new THREE.SphereGeometry(2, 64, 64);
+const material = new THREE.MeshStandardMaterial({
+color: 0x8a2be2,
+emissive: 0x8a2be2,
+metalness: 0.7,
+roughness: 0.2
 });
 
-/* PARTICLES */
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
 
-let particles=[];
-for(let i=0;i<100;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-dx:(Math.random()-0.5),
-dy:(Math.random()-0.5)
-});
-}
+const light = new THREE.PointLight(0x00ffff, 2);
+light.position.set(5,5,5);
+scene.add(light);
+
+camera.position.z = 5;
 
 function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="#8a2be2";
-ctx.fill();
-p.x+=p.dx;
-p.y+=p.dy;
-if(p.x<0||p.x>canvas.width) p.dx*=-1;
-if(p.y<0||p.y>canvas.height) p.dy*=-1;
-});
 requestAnimationFrame(animate);
+sphere.rotation.x += 0.01;
+sphere.rotation.y += 0.01;
+renderer.render(scene, camera);
 }
 animate();
 
+window.addEventListener("mousemove", (event)=>{
+const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+sphere.rotation.y = mouseX;
+sphere.rotation.x = mouseY;
+});
+
+window.addEventListener("resize", ()=>{
+renderer.setSize(window.innerWidth, window.innerHeight);
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+});
 </script>
 
 </body>
