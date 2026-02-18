@@ -3,159 +3,235 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neso | Kişisel Web Sitesi</title>
+<title>Dila Nisa | Kişisel Site</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, Helvetica, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-    background:#0f0f0f;
-    color:#ffffff;
-    line-height:1.6;
+background:#0f0f0f;
+color:white;
 }
 
+/* NAVBAR */
+nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 50px;
+background:transparent;
+transition:0.3s;
+z-index:1000;
+}
+
+nav.scrolled{
+background:#111;
+box-shadow:0 5px 15px rgba(0,0,0,0.6);
+}
+
+nav h2{
+color:#8a2be2;
+}
+
+nav ul{
+list-style:none;
+display:flex;
+gap:20px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+transition:0.3s;
+}
+
+nav ul li a:hover{
+color:#00ffff;
+}
+
+/* HERO */
 header{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:linear-gradient(135deg,#111,#1c1c1c);
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(135deg,#111,#1c1c1c);
 }
 
 header h1{
-    font-size:3rem;
-    background:linear-gradient(90deg,#8a2be2,#00ffff);
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:fadeIn 2s ease-in-out;
+font-size:3rem;
+background:linear-gradient(90deg,#8a2be2,#00ffff);
+-webkit-background-clip:text;
+color:transparent;
 }
 
 header p{
-    margin-top:20px;
-    font-size:1.2rem;
-    color:#ccc;
-    animation:fadeIn 3s ease-in-out;
+margin-top:20px;
+color:#ccc;
 }
 
-button{
-    margin-top:30px;
-    padding:12px 30px;
-    border:none;
-    background:#8a2be2;
-    color:white;
-    border-radius:25px;
-    cursor:pointer;
-    transition:0.3s;
+.btn{
+margin-top:30px;
+padding:12px 30px;
+background:#8a2be2;
+border:none;
+border-radius:25px;
+color:white;
+cursor:pointer;
+transition:0.3s;
 }
 
-button:hover{
-    background:#00ffff;
-    color:black;
-    transform:scale(1.1);
+.btn:hover{
+background:#00ffff;
+color:black;
+transform:scale(1.1);
 }
 
+/* SECTIONS */
 section{
-    padding:80px 20px;
-    text-align:center;
+padding:100px 20px;
+text-align:center;
+opacity:0;
+transform:translateY(40px);
+transition:0.8s;
 }
 
-section h2{
-    margin-bottom:30px;
-    font-size:2rem;
-    color:#8a2be2;
+section.show{
+opacity:1;
+transform:translateY(0);
 }
 
-.skills, .projects{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
+h2{
+margin-bottom:30px;
+color:#8a2be2;
+}
+
+.cards{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
 }
 
 .card{
-    background:#1c1c1c;
-    padding:20px;
-    border-radius:15px;
-    width:250px;
-    transition:0.3s;
-    box-shadow:0 0 10px rgba(0,0,0,0.5);
+background:#1c1c1c;
+padding:20px;
+border-radius:15px;
+width:250px;
+transition:0.3s;
 }
 
 .card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 20px #8a2be2;
+transform:translateY(-10px);
+box-shadow:0 0 20px #8a2be2;
 }
 
+/* FOOTER */
 footer{
-    background:#111;
-    text-align:center;
-    padding:20px;
-    color:#aaa;
+background:#111;
+text-align:center;
+padding:30px;
+color:#aaa;
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
+.social{
+margin-top:15px;
 }
 
-@media(max-width:768px){
-    header h1{
-        font-size:2rem;
-    }
+.social a{
+color:#8a2be2;
+margin:0 10px;
+font-size:20px;
+text-decoration:none;
 }
 </style>
 </head>
 
 <body>
 
+<nav id="navbar">
+<h2>Dila Nisa</h2>
+<ul>
+<li><a href="#about">Hakkımda</a></li>
+<li><a href="#skills">Yetenekler</a></li>
+<li><a href="#projects">Projeler</a></li>
+</ul>
+</nav>
+
 <header>
-    <h1>Neso</h1>
-    <p>Frontend Geliştirici | Bilişim Öğrencisi | Geleceğin Yazılımcısı</p>
-    <button onclick="scrollToSection()">Hakkımda</button>
+<h1>Dila Nisa</h1>
+<p>Frontend Geliştirici | Bilişim Öğrencisi</p>
+<button class="btn" onclick="document.getElementById('about').scrollIntoView()">Keşfet</button>
 </header>
 
 <section id="about">
-    <h2>Hakkımda</h2>
-    <p style="max-width:600px; margin:auto;">
-        Merhaba! Ben Neso. Bilişim öğrencisiyim ve web geliştirme alanında kendimi sürekli geliştiriyorum.
-        Modern ve kullanıcı dostu web siteleri tasarlamayı seviyorum.
-    </p>
+<h2>Hakkımda</h2>
+<p style="max-width:600px;margin:auto;">
+Merhaba! Ben Dila Nisa. Web geliştirme alanında kendimi sürekli geliştiriyorum ve modern tasarımlar üretmeyi seviyorum.
+</p>
 </section>
 
-<section>
-    <h2>Yeteneklerim</h2>
-    <div class="skills">
-        <div class="card">HTML</div>
-        <div class="card">CSS</div>
-        <div class="card">JavaScript</div>
-        <div class="card">Responsive Design</div>
-    </div>
+<section id="skills">
+<h2>Yeteneklerim</h2>
+<div class="cards">
+<div class="card">HTML</div>
+<div class="card">CSS</div>
+<div class="card">JavaScript</div>
+<div class="card">Responsive Tasarım</div>
+</div>
 </section>
 
-<section>
-    <h2>Projelerim</h2>
-    <div class="projects">
-        <div class="card">Kişisel Blog Sitesi</div>
-        <div class="card">Portfolyo Tasarımı</div>
-        <div class="card">Mini Web Uygulaması</div>
-    </div>
+<section id="projects">
+<h2>Projelerim</h2>
+<div class="cards">
+<div class="card">Kişisel Blog</div>
+<div class="card">Portfolyo Sitesi</div>
+<div class="card">Mini Web Uygulaması</div>
+</div>
 </section>
 
 <footer>
-    © 2026 Neso| Tüm Hakları Saklıdır
+© 2026 Dila Nisa
+<div class="social">
+<a href="#">Instagram</a>
+<a href="#">GitHub</a>
+<a href="#">LinkedIn</a>
+</div>
 </footer>
 
 <script>
-function scrollToSection(){
-    document.getElementById("about").scrollIntoView({behavior:"smooth"});
+/* NAVBAR SCROLL EFEKT */
+window.addEventListener("scroll",function(){
+let nav=document.getElementById("navbar");
+if(window.scrollY>50){
+nav.classList.add("scrolled");
+}else{
+nav.classList.remove("scrolled");
 }
+});
+
+/* SECTION ANIMATION */
+let sections=document.querySelectorAll("section");
+
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+let position=sec.getBoundingClientRect().top;
+if(position<window.innerHeight-100){
+sec.classList.add("show");
+}
+});
+});
 </script>
 
 </body>
