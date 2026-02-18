@@ -3,15 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neso | Developer</title>
+<title>Dila Nisa | Developer</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;scroll-behavior:smooth;}
-body{background:#0f0f0f;color:white;}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
 
-/* NAV */
+body{
+background:#0b0b0f;
+color:white;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
 nav{
 position:fixed;
 top:0;
@@ -19,16 +30,35 @@ width:100%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 50px;
-background:#111;
+padding:20px 60px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
 z-index:1000;
 }
 
-nav h2{color:#8a2be2;}
+nav h2{
+font-weight:800;
+background:linear-gradient(90deg,#8a2be2,#00ffff);
+-webkit-background-clip:text;
+color:transparent;
+}
 
-nav ul{list-style:none;display:flex;gap:25px;}
-nav ul li a{text-decoration:none;color:white;transition:0.3s;}
-nav ul li a:hover{color:#00ffff;}
+nav ul{
+list-style:none;
+display:flex;
+gap:30px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:0.3s;
+}
+
+nav ul li a:hover{
+color:#00ffff;
+}
 
 /* HERO */
 header{
@@ -38,143 +68,180 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:linear-gradient(135deg,#111,#1c1c1c);
+background:radial-gradient(circle at top,#1a1a2e,#0b0b0f);
+position:relative;
 }
 
 header h1{
-font-size:3rem;
+font-size:4rem;
+font-weight:800;
 background:linear-gradient(90deg,#8a2be2,#00ffff);
 -webkit-background-clip:text;
 color:transparent;
+animation:fadeUp 1.5s ease forwards;
 }
 
-header p{margin-top:20px;color:#ccc;}
+header p{
+margin-top:20px;
+color:#aaa;
+font-size:1.2rem;
+animation:fadeUp 2s ease forwards;
+}
 
-.btn{
-margin-top:25px;
-padding:12px 30px;
+.glow-btn{
+margin-top:40px;
+padding:15px 40px;
 border:none;
-border-radius:30px;
+border-radius:40px;
+background:linear-gradient(90deg,#8a2be2,#00ffff);
+color:white;
+font-weight:600;
 cursor:pointer;
 transition:0.3s;
-font-weight:bold;
+box-shadow:0 0 15px #8a2be2;
 }
 
-.primary{background:#8a2be2;color:white;}
-.primary:hover{background:#00ffff;color:black;transform:scale(1.1);}
+.glow-btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 30px #00ffff;
+}
 
-.secondary{
-background:transparent;
-border:2px solid #8a2be2;
+/* SCROLL INDICATOR */
+.scroll-down{
+position:absolute;
+bottom:20px;
+font-size:14px;
+color:#888;
+animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1;}
+50%{opacity:0.3;}
+100%{opacity:1;}
+}
+
+/* SECTIONS */
+section{
+padding:120px 20px;
+text-align:center;
+opacity:0;
+transform:translateY(50px);
+transition:1s;
+}
+
+section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+h2{
+margin-bottom:40px;
+font-size:2rem;
 color:#8a2be2;
-margin-left:10px;
 }
-.secondary:hover{background:#8a2be2;color:white;}
-
-/* SECTION */
-section{padding:100px 20px;text-align:center;}
-h2{margin-bottom:30px;color:#8a2be2;}
 
 .cards{
 display:flex;
 justify-content:center;
 flex-wrap:wrap;
-gap:20px;
+gap:25px;
 }
 
 .card{
-background:#1c1c1c;
-padding:20px;
-border-radius:15px;
-width:250px;
-transition:0.3s;
-cursor:pointer;
+background:#15151f;
+padding:30px;
+border-radius:20px;
+width:260px;
+transition:0.4s;
 }
 
 .card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 20px #8a2be2;
+transform:translateY(-15px);
+box-shadow:0 0 30px #8a2be2;
 }
 
 /* FOOTER */
 footer{
 background:#111;
 text-align:center;
-padding:30px;
+padding:40px;
+color:#777;
 }
 
-.social a{
-color:#8a2be2;
-margin:0 15px;
-font-size:22px;
-transition:0.3s;
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px);}
+to{opacity:1;transform:translateY(0);}
 }
 
-.social a:hover{color:#00ffff;}
+@media(max-width:768px){
+header h1{font-size:2.5rem;}
+nav{padding:20px;}
+}
 </style>
 </head>
 
 <body>
 
 <nav>
-<h2>Neso</h2>
+<h2>Dila Nisa</h2>
 <ul>
 <li><a href="#about">Hakkımda</a></li>
+<li><a href="#skills">Yetenekler</a></li>
 <li><a href="#projects">Projeler</a></li>
-<li><a href="#contact">İletişim</a></li>
 </ul>
 </nav>
 
 <header>
-<h1>Neso</h1>
-<p>Frontend Developer | Bilişim Öğrencisi</p>
-<div>
-<button class="btn primary">Benimle Çalış</button>
-<a href="cv.pdf" download>
-<button class="btn secondary">CV İndir</button>
-</a>
-</div>
+<h1>Dila Nisa</h1>
+<p>Frontend Developer | Koyu Tema Uzmanı 🖤</p>
+<button class="glow-btn" onclick="document.getElementById('about').scrollIntoView()">Keşfet</button>
+<div class="scroll-down">↓ Kaydır ↓</div>
 </header>
 
 <section id="about">
 <h2>Hakkımda</h2>
-<p style="max-width:600px;margin:auto;">
-Web geliştirme alanında kendimi sürekli geliştiriyorum. Modern, hızlı ve kullanıcı dostu tasarımlar üretmeyi seviyorum.
+<p style="max-width:700px;margin:auto;">
+Modern, animasyonlu ve kullanıcı odaklı web siteleri geliştiriyorum.
+Kod yazmak benim için sadece teknik değil, estetik bir süreç.
 </p>
+</section>
+
+<section id="skills">
+<h2>Yeteneklerim</h2>
+<div class="cards">
+<div class="card">HTML & CSS</div>
+<div class="card">JavaScript</div>
+<div class="card">Responsive Tasarım</div>
+<div class="card">UI / UX Düşüncesi</div>
+</div>
 </section>
 
 <section id="projects">
 <h2>Projelerim</h2>
 <div class="cards">
-<a href="proje1.html">
-<div class="card">
-<h3>Portfolyo Sitesi</h3>
-<p>Modern tasarım.</p>
+<div class="card">Portfolyo Web Sitesi</div>
+<div class="card">Mini JavaScript App</div>
+<div class="card">Modern Landing Page</div>
 </div>
-</a>
-
-<a href="proje2.html">
-<div class="card">
-<h3>Mini Web App</h3>
-<p>JavaScript uygulaması.</p>
-</div>
-</a>
-</div>
-</section>
-
-<section id="contact">
-<h2>İletişim</h2>
-<p>Email: dilabeybs3474@gmail.com</p>
 </section>
 
 <footer>
-© 2026 Neso
-<div class="social">
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-github"></i></a>
-<a href="#"><i class="fab fa-linkedin"></i></a>
-</div>
+© 2026 Dila Nisa | Tüm Hakları Saklıdır
 </footer>
+
+<script>
+const sections=document.querySelectorAll("section");
+
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+const position=sec.getBoundingClientRect().top;
+if(position<window.innerHeight-100){
+sec.classList.add("show");
+}
+});
+});
+</script>
 
 </body>
 </html>
