@@ -3,362 +3,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nesom Ultra CEO Portfolio</title>
+<title>Neso Code</title>
+
 <style>
-/* ---------- GENEL ---------- */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  color: #222;
-  scroll-behavior: smooth;
-  transition: background 0.5s, color 0.5s;
-  background: #f4f4f4;
-  overflow-x: hidden;
-}
-body.dark-mode { background: #121212; color: #eaeaea; }
-
-/* ---------- HEADER ---------- */
-header {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background: rgba(255,255,255,0.95);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  z-index: 1000;
-  transition: all 0.3s;
-}
-header.dark-mode { background: rgba(18,18,18,0.95); }
-nav a {
-  margin: 0 15px;
-  font-weight: bold;
-  position: relative;
-  transition: color 0.3s;
-}
-nav a.active::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg,#ff6ec4,#7873f5);
-  border-radius: 2px;
-}
-nav a:hover { color:#ff6ec4; }
-
-/* ---------- THEME BUTTON ---------- */
-#theme-toggle {
-  background: #444;
-  color: #fff;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2rem;
-  transition: background 0.3s;
-}
-#theme-toggle:hover { background: #666; }
-
-/* ---------- SCROLL PROGRESS ---------- */
-#progress-bar {
-  position:fixed;
-  top:0;
-  left:0;
-  height:5px;
-  background: linear-gradient(90deg,#ff6ec4,#7873f5);
-  width:0%;
-  z-index:1500;
-  transition: width 0.2s ease-out;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
 }
 
-/* ---------- ADVANCED FADE + 3D TILT ---------- */
-.advanced-fade {
-  opacity:0;
-  transform:translateY(50px) scale(0.95);
-  filter: blur(4px);
-  transition: all 1s cubic-bezier(0.6,0.05,0.28,0.91);
-  perspective:1000px;
-}
-.advanced-fade.show {
-  opacity:1;
-  transform:translateY(0) scale(1);
-  filter:blur(0);
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    color:white;
+    transition:0.3s ease;
 }
 
-/* ---------- BUTTON ---------- */
-a.button {
-  display:inline-block;
-  background: linear-gradient(90deg,#ff6ec4,#7873f5);
-  color:#fff;
-  padding:12px 26px;
-  border-radius:30px;
-  font-weight:bold;
-  transition: all 0.3s;
-  position:relative;
-}
-a.button::after {
-  content:'➔';
-  margin-left:8px;
-  display:inline-block;
-  opacity:0;
-  transform:translateX(-10px);
-  transition: all 0.3s;
-}
-a.button:hover::after { opacity:1; transform:translateX(0); }
-a.button:hover { transform:scale(1.05); box-shadow:0 0 15px rgba(255,110,196,0.5); }
-
-/* ---------- PROJECT CARDS ---------- */
-.project-card {
-  background: rgba(255,255,255,0.9);
-  padding:20px;
-  margin:20px auto;
-  border-radius:15px;
-  max-width:400px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  perspective:1000px;
-  cursor:pointer;
-}
-.project-card:hover {
-  transform: rotateY(8deg) rotateX(5deg) translateY(-15px) scale(1.05);
-  box-shadow:0 20px 40px rgba(0,0,0,0.3);
-}
-body.dark-mode .project-card {
-  background: rgba(30,30,30,0.95);
-  box-shadow:0 5px 15px rgba(0,0,0,0.5);
+body.light-mode{
+    background:white;
+    color:black;
 }
 
-/* ---------- MODAL ---------- */
-#modal {
-  position:fixed;
-  top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.7);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
-}
-#modal-content {
-  background:#fff; padding:30px; border-radius:15px;
-  max-width:600px; text-align:center;
-}
-body.dark-mode #modal-content { background:#222; color:#fff; }
-#modal-close { cursor:pointer; font-weight:bold; float:right; font-size:1.2rem; }
-
-/* ---------- PARALLAX ---------- */
-.parallax {
-  background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  min-height:400px;
-  margin:50px 0;
-  border-radius:15px;
+/* HEADER */
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.3);
+    backdrop-filter:blur(10px);
+    z-index:1000;
 }
 
-/* ---------- FLOATING SOCIALS ---------- */
-.social-icons {
-  position:fixed; top:50%; right:10px;
-  transform:translateY(-50%);
-  display:flex; flex-direction:column; gap:15px;
-  z-index:1500;
+header h1{
+    font-size:20px;
 }
-.social-icons a {
-  width:40px; height:40px; background:#fff;
-  border-radius:50%; display:flex;
-  align-items:center; justify-content:center;
-  text-decoration:none; color:#333; font-size:1.2rem;
-  box-shadow:0 3px 8px rgba(0,0,0,0.2);
-  transition:all 0.3s;
-}
-.social-icons a:hover { transform:scale(1.2); box-shadow:0 6px 15px rgba(0,0,0,0.4); }
 
-@media(max-width:768px){ header{flex-direction:column;} nav a{margin:10px;} .social-icons{display:none;} }
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    opacity:0.7;
+}
+
+body.light-mode nav a{
+    color:black;
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:10px;
+    text-shadow:0 0 20px rgba(255,255,255,0.5);
+}
+
+.hero h2{
+    font-size:22px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:16px;
+    margin-bottom:25px;
+    opacity:0.8;
+}
+
+.hero-btn{
+    padding:12px 25px;
+    background:white;
+    color:#1e3c72;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.hero-btn:hover{
+    transform:scale(1.05);
+}
+
+/* SECTIONS */
+section{
+    padding:120px 20px;
+    text-align:center;
+}
+
+.card{
+    max-width:600px;
+    margin:auto;
+    padding:30px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.1);
+}
+
+body.light-mode .card{
+    background:rgba(0,0,0,0.05);
+}
+
+.projects{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+}
+
+.project-card{
+    width:200px;
+    padding:15px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.1);
+    transition:0.3s;
+}
+
+.project-card:hover{
+    transform:translateY(-5px);
+}
+
+body.light-mode .project-card{
+    background:rgba(0,0,0,0.05);
+}
+
+/* ANIMATION */
+.fade-in{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 0.8s ease;
+}
+
+.fade-in.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* BUTTON */
+.mode-btn{
+    margin-top:20px;
+    padding:8px 15px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+    padding:30px;
+    text-align:center;
+    font-size:14px;
+    opacity:0.7;
+}
 </style>
 </head>
+
 <body>
 
-<canvas id="particles"></canvas>
-<div id="progress-bar"></div>
-
-<header id="header">
-  <div class="logo"><strong>Nesom</strong></div>
-  <nav>
-    <a href="#about" class="active">Hakkımda</a>
-    <a href="#projects">Projeler</a>
-    <a href="#contact">İletişim</a>
-  </nav>
-  <button id="theme-toggle">🌙</button>
+<header>
+<h1>Neso Code</h1>
+<nav>
+<a href="#anasayfa">Ana Sayfa</a>
+<a href="#hakkimda">Hakkımda</a>
+<a href="#projeler">Projelerim</a>
+</nav>
 </header>
 
-<div class="social-icons">
-  <a href="https://github.com/username" target="_blank">🐱</a>
-  <a href="https://linkedin.com/in/username" target="_blank">💼</a>
-  <a href="https://instagram.com/username" target="_blank">📸</a>
+<section id="anasayfa" class="hero">
+<div>
+<h1>Neso Code</h1>
+<h2>Kod Yazmıyoruz, İz Bırakıyoruz.</h2>
+<p>Genç bir geliştirici olarak teknolojiyi sadece kullanmıyor, inşa ediyorum.</p>
+<a href="#projeler" class="hero-btn">Projelerime Bak</a>
+<br>
+<button class="mode-btn" onclick="toggleMode()">Mod Değiştir</button>
 </div>
-
-<section class="advanced-fade" id="about">
-  <h2>Hakkımda</h2>
-  <p>Ben Nisommmmmmmm, web siteni ultra modern ve interaktif yapmak için buradayım 😎</p>
-  <a href="#projects" class="button">Projelerime Git</a>
 </section>
 
-<section class="advanced-fade" id="projects">
-  <h2>Projeler</h2>
-  <div id="project-container"></div>
-</section>
-
-<section class="parallax advanced-fade"></section>
-
-<section class="advanced-fade" id="contact">
-  <h2>İletişim</h2>
-  <p>Email, sosyal medya linkleri veya form buraya gelecek. Modern ve etkileşimli bir görünüm var!</p>
-  <a href="mailto:nisom@example.com" class="button">Bana Yaz</a>
-</section>
-
-<!-- MODAL -->
-<div id="modal">
-  <div id="modal-content">
-    <span id="modal-close">X</span>
-    <h3 id="modal-title"></h3>
-    <p id="modal-desc"></p>
-    <a href="#" id="modal-link" class="button">Projeyi İncele</a>
-  </div>
+<section id="hakkimda" class="fade-in">
+<div class="card">
+<h2>Hakkımda</h2>
+<p>
+15 yaşında yazılım dünyasına adım atan bir geliştiriciyim.
+Teknolojiye ve büyük hedeflere inanıyorum.
+Amacım gelecekte kendi teknoloji şirketimi kurmak.
+</p>
 </div>
+</section>
+
+<section id="projeler" class="fade-in">
+<div class="card">
+<h2>Projelerim</h2>
+<div class="projects">
+<div class="project-card">
+<h3>İlk Web Sitem</h3>
+<p>GitHub Pages ile yayınlandı.</p>
+</div>
+<div class="project-card">
+<h3>Mobil Uygulama</h3>
+<p>Yakında geliyor.</p>
+</div>
+<div class="project-card">
+<h3>Yapay Zeka</h3>
+<p>Gelecek projeler.</p>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+© 2026 Neso Code
+</footer>
 
 <script>
-// ---------- THEME + LOCALSTORAGE ----------
-const toggle = document.getElementById('theme-toggle');
-if(localStorage.getItem('theme')==='dark'){ document.body.classList.add('dark-mode'); toggle.textContent='☀️'; }
-toggle.addEventListener('click', ()=>{
-  document.body.classList.toggle('dark-mode');
-  const dark = document.body.classList.contains('dark-mode');
-  toggle.textContent = dark ? '☀️' : '🌙';
-  localStorage.setItem('theme', dark ? 'dark' : 'light');
-});
-
-// ---------- ADVANCED FADE ----------
-const advancedSections = document.querySelectorAll('.advanced-fade');
-const advancedObserver = new IntersectionObserver((entries,observer)=>{
-  entries.forEach((entry,index)=>{
-    if(entry.isIntersecting){
-      setTimeout(()=>{ entry.target.classList.add('show'); },index*200);
-      observer.unobserve(entry.target);
-    }
-  });
-},{threshold:0.3});
-advancedSections.forEach(section=>advancedObserver.observe(section));
-
-// ---------- NAV ACTIVE ----------
-const navLinks = document.querySelectorAll('nav a');
-window.addEventListener('scroll', ()=>{
-  let fromTop = window.scrollY + 150;
-  navLinks.forEach(link=>{
-    const section = document.querySelector(link.hash);
-    if(section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop){
-      link.classList.add('active');
-    } else { link.classList.remove('active'); }
-  });
-});
-
-// ---------- PROJECTS ARRAY ----------
-const projects = [
-  { title:"Proje 1", desc:"İlk projem, JS animasyonları içeriyor. Scroll ve hover animasyonlu!", link:"#", gradient:"linear-gradient(135deg,#ff6ec4,#7873f5)", glow:"rgba(255,110,196,0.5)"},
-  { title:"Proje 2", desc:"Web tasarım örneği, hover efektli, tilt + glow içeriyor.", link:"#", gradient:"linear-gradient(135deg,#6edcff,#6f42c1)", glow:"rgba(110,220,255,0.5)"},
-  { title:"Proje 3", desc:"GitHub API entegrasyonu, interaktif hover animasyonu ile.", link:"#", gradient:"linear-gradient(135deg,#ffb347,#ffcc33)", glow:"rgba(255,179,71,0.5)"},
-  { title:"Proje 4", desc:"Ultra premium animasyonlu proje. Scroll ve tilt + glow ile.", link:"#", gradient:"linear-gradient(135deg,#00c6ff,#0072ff)", glow:"rgba(0,198,255,0.5)"},
-  { title:"Proje 5", desc:"Scroll + hover efekti olan son proje. Animasyonlu WOW!", link:"#", gradient:"linear-gradient(135deg,#f7971e,#ffd200)", glow:"rgba(247,151,30,0.5)"},
-  { title:"Proje 6", desc:"Ekstra premium proje, tilt + glow + scroll fade efektli.", link:"#", gradient:"linear-gradient(135deg,#8e2de2,#4a00e0)", glow:"rgba(142,45,226,0.5)"},
-  { title:"Proje 7", desc:"Yeni eklenen proje, hover + tilt + glow animasyonlu.", link:"#", gradient:"linear-gradient(135deg,#ff4b1f,#ff9068)", glow:"rgba(255,75,31,0.5)"},
-  { title:"Proje 8", desc:"Yeni proje, ultra premium interaktif kart.", link:"#", gradient:"linear-gradient(135deg,#36d1dc,#5b86e5)", glow:"rgba(54,209,220,0.5)"},
-  { title:"Proje 9", desc:"Son eklenen premium proje, tilt + scroll fade + glow içeriyor.", link:"#", gradient:"linear-gradient(135deg,#fc5c7d,#6a82fb)", glow:"rgba(252,92,125,0.5)"}
-];
-
-// ---------- CREATE PROJECT CARDS + MODAL ----------
-const container = document.getElementById('project-container');
-const modal = document.getElementById('modal');
-const modalTitle = document.getElementById('modal-title');
-const modalDesc = document.getElementById('modal-desc');
-const modalLink = document.getElementById('modal-link');
-const modalClose = document.getElementById('modal-close');
-
-projects.forEach(p => {
-  const card = document.createElement('div');
-  card.className = "project-card advanced-fade";
-  card.style.background = p.gradient;
-  card.style.boxShadow = `0 10px 30px ${p.glow}`;
-  card.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p>`;
-
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const rotateX = ((y / rect.height) - 0.5) * 15;
-    const rotateY = ((x / rect.width) - 0.5) * 15;
-    card.style.transform = `rotateX(${ -rotateX }deg) rotateY(${ rotateY }deg) scale(1.05)`;
-  });
-  card.addEventListener('mouseleave', () => { card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)'; });
-
-  card.addEventListener('click', ()=>{
-    modal.style.display='flex';
-    modalTitle.textContent = p.title;
-    modalDesc.textContent = p.desc;
-    modalLink.href = p.link;
-  });
-
-  container.appendChild(card);
-  advancedObserver.observe(card);
-});
-
-modalClose.addEventListener('click', ()=>{ modal.style.display='none'; });
-window.addEventListener('click',(e)=>{ if(e.target===modal){ modal.style.display='none'; } });
-
-// ---------- SCROLL PROGRESS BAR ----------
-const progressBar = document.getElementById('progress-bar');
-window.addEventListener('scroll', ()=>{
-  const scrollTop = window.scrollY;
-  const docHeight = document.body.scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / docHeight) * 100;
-  progressBar.style.width = scrollPercent+'%';
-});
-
-// ---------- SCROLL GRADIENT ----------
-window.addEventListener('scroll', ()=>{
-  const scrolled = window.scrollY;
-  const maxScroll = document.body.scrollHeight - window.innerHeight;
-  const ratio = scrolled/maxScroll;
-  const startColor = [255,110,196];
-  const endColor = [120,115,245];
-  const r = Math.floor(startColor[0] + (endColor[0]-startColor[0])*ratio);
-  const g = Math.floor(startColor[1] + (endColor[1]-startColor[1])*ratio);
-  const b = Math.floor(startColor[2] + (endColor[2]-startColor[2])*ratio);
-  document.body.style.background = `rgb(${r},${g},${b})`;
-});
-
-// ---------- PARTICLE BACKGROUND ----------
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let particlesArray = [];
-class Particle{
-  constructor(){ this.x=Math.random()*canvas.width; this.y=Math.random()*canvas.height; this.size=Math.random()*2+1; this.speedX=Math.random()*0.5-0.25; this.speedY=Math.random()*0.5-0.25; }
-  update(){ this.x+=this.speedX; this.y+=this.speedY; if(this.x>canvas.width)this.x=0;if(this.x<0)this.x=canvas.width;if(this.y>canvas.height)this.y=0;if(this.y<0)this.y=canvas.height; }
-  draw(){ ctx.fillStyle='rgba(255,110,196,0.7)'; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
+function toggleMode(){
+    document.body.classList.toggle("light-mode");
 }
-function initParticles(){ particlesArray=[]; for(let i=0;i<150;i++){particlesArray.push(new Particle());} }
-function animateParticles(){ ctx.clearRect(0,0,canvas.width,canvas.height); particlesArray.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animateParticles); }
-window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight; initParticles();});
-initParticles();
-animateParticles();
 
-// ---------- HOVER SOUND ----------
-const hoverSound = new Audio('https://www.soundjay.com/buttons/sounds/button-16.mp3');
-document.querySelectorAll('.button,.project-card').forEach(el=>{ el.addEventListener('mouseenter',()=>{ hoverSound.currentTime=0; hoverSound.play(); }); });
+const sections = document.querySelectorAll(".fade-in");
+
+window.addEventListener("scroll",()=>{
+    sections.forEach(section=>{
+        const sectionTop = section.getBoundingClientRect().top;
+        const triggerPoint = window.innerHeight - 100;
+
+        if(sectionTop < triggerPoint){
+            section.classList.add("show");
+        }
+    });
+});
 </script>
+
 </body>
 </html>
