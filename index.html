@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neso | Dark Experience</title>
+<title>Neso | Premium Dark</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -13,31 +13,59 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
 }
 
 body{
 background:#050510;
 color:white;
 overflow-x:hidden;
+cursor:none;
 }
 
-/* ANIMATED BACKGROUND */
-.bg{
+/* LOADING SCREEN */
+.loader{
 position:fixed;
 width:100%;
 height:100%;
+background:#050510;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+font-family:'Orbitron',sans-serif;
+font-size:2rem;
+letter-spacing:3px;
+}
+
+.loader span{
+color:#8a2be2;
+animation:blink 1s infinite alternate;
+}
+
+@keyframes blink{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+
+/* CUSTOM CURSOR */
+.cursor{
+position:fixed;
+width:20px;
+height:20px;
+border-radius:50%;
+background:#00ffff;
+pointer-events:none;
+transform:translate(-50%,-50%);
+mix-blend-mode:screen;
+box-shadow:0 0 20px #00ffff,0 0 40px #8a2be2;
+}
+
+/* PARTICLES */
+canvas{
+position:fixed;
 top:0;
 left:0;
 z-index:-1;
-background:radial-gradient(circle at 20% 30%,#8a2be2 0%,transparent 40%),
-           radial-gradient(circle at 80% 70%,#00ffff 0%,transparent 40%);
-animation:moveBg 10s infinite alternate;
-}
-
-@keyframes moveBg{
-0%{background-position:20% 30%,80% 70%;}
-100%{background-position:30% 40%,70% 60%;}
 }
 
 /* HERO */
@@ -48,39 +76,19 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+font-family:'Orbitron',sans-serif;
 }
 
 header h1{
-font-family:'Orbitron',sans-serif;
-font-size:3.5rem;
+font-size:3rem;
 background:linear-gradient(90deg,#8a2be2,#00ffff);
 -webkit-background-clip:text;
 color:transparent;
 }
 
-.typing{
-margin-top:20px;
-font-size:1.2rem;
-color:#aaa;
-border-right:2px solid #8a2be2;
-white-space:nowrap;
-overflow:hidden;
-width:0;
-animation:typing 4s steps(40,end) forwards, blink 0.8s infinite;
-}
-
-@keyframes typing{
-from{width:0;}
-to{width:320px;}
-}
-
-@keyframes blink{
-50%{border-color:transparent;}
-}
-
-/* GLASS CARDS */
+/* CARDS */
 section{
-padding:120px 20px;
+padding:100px 20px;
 text-align:center;
 }
 
@@ -96,18 +104,16 @@ margin:auto;
 background:rgba(255,255,255,0.05);
 backdrop-filter:blur(15px);
 border:1px solid rgba(255,255,255,0.1);
-padding:30px;
+padding:40px;
 border-radius:20px;
 transition:0.4s;
-cursor:pointer;
+transform-style:preserve-3d;
 }
 
 .card:hover{
-transform:translateY(-15px) scale(1.05);
-box-shadow:0 0 30px #8a2be2;
+box-shadow:0 0 40px #8a2be2;
 }
 
-/* FOOTER */
 footer{
 padding:40px;
 text-align:center;
@@ -118,28 +124,95 @@ color:#777;
 
 <body>
 
-<div class="bg"></div>
+<div class="loader">YÜKLENİYOR<span>...</span></div>
+<div class="cursor"></div>
+<canvas id="particles"></canvas>
 
 <header>
-<h1>Neso</h1>
-<div class="typing">Modern Web Deneyimleri Tasarlıyorum...</div>
+<h1>Dila Nisa</h1>
+<p>Premium Dark Experience</p>
 </header>
 
 <section>
-<h2 style="margin-bottom:40px;color:#8a2be2;">Neler Yapıyorum?</h2>
-
+<h2 style="margin-bottom:40px;color:#8a2be2;">Uzmanlık Alanlarım</h2>
 <div class="grid">
-<div class="card">✨ Modern UI Tasarım</div>
-<div class="card">⚡ JavaScript Etkileşim</div>
-<div class="card">🖤 Koyu Tema Uzmanlığı</div>
-<div class="card">🚀 Geleceğin Teknolojileri</div>
+<div class="card">✨ Modern UI</div>
+<div class="card">⚡ JavaScript</div>
+<div class="card">🚀 Responsive</div>
+<div class="card">🖤 Dark Mode</div>
 </div>
-
 </section>
 
 <footer>
-© 2026 Neso | Dark Mode Experience
+© 2026 Neso | Premium Experience
 </footer>
+
+<script>
+
+/* LOADER */
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+document.querySelector(".loader").style.display="none";
+},1500);
+});
+
+/* CUSTOM CURSOR */
+const cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
+
+/* 3D TILT */
+document.querySelectorAll(".card").forEach(card=>{
+card.addEventListener("mousemove",(e)=>{
+let x=e.offsetX;
+let y=e.offsetY;
+let centerX=card.offsetWidth/2;
+let centerY=card.offsetHeight/2;
+let rotateX=((y-centerY)/20);
+let rotateY=((centerX-x)/20);
+card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+card.addEventListener("mouseleave",()=>{
+card.style.transform="rotateX(0) rotateY(0)";
+});
+});
+
+/* PARTICLES */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<100;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+dx:(Math.random()-0.5),
+dy:(Math.random()-0.5)
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#8a2be2";
+ctx.fill();
+p.x+=p.dx;
+p.y+=p.dy;
+if(p.x<0||p.x>canvas.width) p.dx*=-1;
+if(p.y<0||p.y>canvas.height) p.dy*=-1;
+});
+requestAnimationFrame(animate);
+}
+animate();
+
+</script>
 
 </body>
 </html>
