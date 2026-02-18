@@ -3,133 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neso Code</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<title>Neso | Kişisel Web Sitesi</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 body{
-background:#0f172a;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-transition:0.3s;
+    background:#0f0f0f;
+    color:#ffffff;
+    line-height:1.6;
 }
 
-.container{
-width:350px;
-padding:40px;
-background:#1e293b;
-border-radius:20px;
-text-align:center;
-box-shadow:0 20px 50px rgba(0,0,0,0.4);
+header{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(135deg,#111,#1c1c1c);
 }
 
-h1{
-margin-bottom:20px;
-background:linear-gradient(90deg,#38bdf8,#a78bfa);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+header h1{
+    font-size:3rem;
+    background:linear-gradient(90deg,#8a2be2,#00ffff);
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:fadeIn 2s ease-in-out;
 }
 
-input{
-width:100%;
-padding:12px;
-margin:10px 0;
-border:none;
-border-radius:10px;
+header p{
+    margin-top:20px;
+    font-size:1.2rem;
+    color:#ccc;
+    animation:fadeIn 3s ease-in-out;
 }
 
 button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:30px;
-background:linear-gradient(90deg,#38bdf8,#a78bfa);
-color:white;
-font-weight:600;
-cursor:pointer;
-transition:0.3s;
+    margin-top:30px;
+    padding:12px 30px;
+    border:none;
+    background:#8a2be2;
+    color:white;
+    border-radius:25px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
 button:hover{
-transform:scale(1.05);
+    background:#00ffff;
+    color:black;
+    transform:scale(1.1);
 }
 
-.dashboard{
-display:none;
-flex-direction:column;
-align-items:center;
+section{
+    padding:80px 20px;
+    text-align:center;
 }
 
-.logout{
-margin-top:20px;
-background:#ef4444;
+section h2{
+    margin-bottom:30px;
+    font-size:2rem;
+    color:#8a2be2;
 }
 
-.stat{
-margin-top:20px;
-font-size:18px;
-opacity:0.8;
+.skills, .projects{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.card{
+    background:#1c1c1c;
+    padding:20px;
+    border-radius:15px;
+    width:250px;
+    transition:0.3s;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 20px #8a2be2;
+}
+
+footer{
+    background:#111;
+    text-align:center;
+    padding:20px;
+    color:#aaa;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@media(max-width:768px){
+    header h1{
+        font-size:2rem;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="loginBox">
-<h1>Neso Code</h1>
-<h3>Giriş Yap</h3>
-<input type="text" id="username" placeholder="Kullanıcı Adı">
-<input type="password" id="password" placeholder="Şifre">
-<button onclick="login()">Giriş Yap</button>
-<p id="error" style="color:#f87171;margin-top:10px;"></p>
-</div>
+<header>
+    <h1>Neso</h1>
+    <p>Frontend Geliştirici | Bilişim Öğrencisi | Geleceğin Yazılımcısı</p>
+    <button onclick="scrollToSection()">Hakkımda</button>
+</header>
 
-<div class="container dashboard" id="dashboard">
-<h1>Dashboard</h1>
-<h3 id="welcome"></h3>
+<section id="about">
+    <h2>Hakkımda</h2>
+    <p style="max-width:600px; margin:auto;">
+        Merhaba! Ben Neso. Bilişim öğrencisiyim ve web geliştirme alanında kendimi sürekli geliştiriyorum.
+        Modern ve kullanıcı dostu web siteleri tasarlamayı seviyorum.
+    </p>
+</section>
 
-<div class="stat">Projeler: 12</div>
-<div class="stat">Toplam Kod: 5000+ Satır</div>
+<section>
+    <h2>Yeteneklerim</h2>
+    <div class="skills">
+        <div class="card">HTML</div>
+        <div class="card">CSS</div>
+        <div class="card">JavaScript</div>
+        <div class="card">Responsive Design</div>
+    </div>
+</section>
 
-<button class="logout" onclick="logout()">Çıkış Yap</button>
-</div>
+<section>
+    <h2>Projelerim</h2>
+    <div class="projects">
+        <div class="card">Kişisel Blog Sitesi</div>
+        <div class="card">Portfolyo Tasarımı</div>
+        <div class="card">Mini Web Uygulaması</div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Neso| Tüm Hakları Saklıdır
+</footer>
 
 <script>
-function login(){
-let username=document.getElementById("username").value;
-let password=document.getElementById("password").value;
-
-if(username.trim()===""||password.trim()===""){
-document.getElementById("error").innerText="Lütfen tüm alanları doldurun";
-return;
-}
-
-localStorage.setItem("user",username);
-showDashboard();
-}
-
-function showDashboard(){
-let user=localStorage.getItem("user");
-if(user){
-document.getElementById("loginBox").style.display="none";
-document.getElementById("dashboard").style.display="flex";
-document.getElementById("welcome").innerText="Hoş geldin, "+user+" 👑";
-}
-}
-
-function logout(){
-localStorage.removeItem("user");
-location.reload();
-}
-
-window.onload=function(){
-showDashboard();
+function scrollToSection(){
+    document.getElementById("about").scrollIntoView({behavior:"smooth"});
 }
 </script>
 
