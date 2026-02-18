@@ -3,23 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dila Nisa | Kişisel Site</title>
+<title>Neso | Developer</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-scroll-behavior:smooth;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;scroll-behavior:smooth;}
+body{background:#0f0f0f;color:white;}
 
-body{
-background:#0f0f0f;
-color:white;
-}
-
-/* NAVBAR */
+/* NAV */
 nav{
 position:fixed;
 top:0;
@@ -28,35 +20,15 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px 50px;
-background:transparent;
-transition:0.3s;
+background:#111;
 z-index:1000;
 }
 
-nav.scrolled{
-background:#111;
-box-shadow:0 5px 15px rgba(0,0,0,0.6);
-}
+nav h2{color:#8a2be2;}
 
-nav h2{
-color:#8a2be2;
-}
-
-nav ul{
-list-style:none;
-display:flex;
-gap:20px;
-}
-
-nav ul li a{
-text-decoration:none;
-color:white;
-transition:0.3s;
-}
-
-nav ul li a:hover{
-color:#00ffff;
-}
+nav ul{list-style:none;display:flex;gap:25px;}
+nav ul li a{text-decoration:none;color:white;transition:0.3s;}
+nav ul li a:hover{color:#00ffff;}
 
 /* HERO */
 header{
@@ -76,46 +48,32 @@ background:linear-gradient(90deg,#8a2be2,#00ffff);
 color:transparent;
 }
 
-header p{
-margin-top:20px;
-color:#ccc;
-}
+header p{margin-top:20px;color:#ccc;}
 
 .btn{
-margin-top:30px;
+margin-top:25px;
 padding:12px 30px;
-background:#8a2be2;
 border:none;
-border-radius:25px;
-color:white;
+border-radius:30px;
 cursor:pointer;
 transition:0.3s;
+font-weight:bold;
 }
 
-.btn:hover{
-background:#00ffff;
-color:black;
-transform:scale(1.1);
-}
+.primary{background:#8a2be2;color:white;}
+.primary:hover{background:#00ffff;color:black;transform:scale(1.1);}
 
-/* SECTIONS */
-section{
-padding:100px 20px;
-text-align:center;
-opacity:0;
-transform:translateY(40px);
-transition:0.8s;
-}
-
-section.show{
-opacity:1;
-transform:translateY(0);
-}
-
-h2{
-margin-bottom:30px;
+.secondary{
+background:transparent;
+border:2px solid #8a2be2;
 color:#8a2be2;
+margin-left:10px;
 }
+.secondary:hover{background:#8a2be2;color:white;}
+
+/* SECTION */
+section{padding:100px 20px;text-align:center;}
+h2{margin-bottom:30px;color:#8a2be2;}
 
 .cards{
 display:flex;
@@ -130,6 +88,7 @@ padding:20px;
 border-radius:15px;
 width:250px;
 transition:0.3s;
+cursor:pointer;
 }
 
 .card:hover{
@@ -142,97 +101,80 @@ footer{
 background:#111;
 text-align:center;
 padding:30px;
-color:#aaa;
-}
-
-.social{
-margin-top:15px;
 }
 
 .social a{
 color:#8a2be2;
-margin:0 10px;
-font-size:20px;
-text-decoration:none;
+margin:0 15px;
+font-size:22px;
+transition:0.3s;
 }
+
+.social a:hover{color:#00ffff;}
 </style>
 </head>
 
 <body>
 
-<nav id="navbar">
-<h2>Dila Nisa</h2>
+<nav>
+<h2>Neso</h2>
 <ul>
 <li><a href="#about">Hakkımda</a></li>
-<li><a href="#skills">Yetenekler</a></li>
 <li><a href="#projects">Projeler</a></li>
+<li><a href="#contact">İletişim</a></li>
 </ul>
 </nav>
 
 <header>
-<h1>Dila Nisa</h1>
-<p>Frontend Geliştirici | Bilişim Öğrencisi</p>
-<button class="btn" onclick="document.getElementById('about').scrollIntoView()">Keşfet</button>
+<h1>Neso</h1>
+<p>Frontend Developer | Bilişim Öğrencisi</p>
+<div>
+<button class="btn primary">Benimle Çalış</button>
+<a href="cv.pdf" download>
+<button class="btn secondary">CV İndir</button>
+</a>
+</div>
 </header>
 
 <section id="about">
 <h2>Hakkımda</h2>
 <p style="max-width:600px;margin:auto;">
-Merhaba! Ben Dila Nisa. Web geliştirme alanında kendimi sürekli geliştiriyorum ve modern tasarımlar üretmeyi seviyorum.
+Web geliştirme alanında kendimi sürekli geliştiriyorum. Modern, hızlı ve kullanıcı dostu tasarımlar üretmeyi seviyorum.
 </p>
-</section>
-
-<section id="skills">
-<h2>Yeteneklerim</h2>
-<div class="cards">
-<div class="card">HTML</div>
-<div class="card">CSS</div>
-<div class="card">JavaScript</div>
-<div class="card">Responsive Tasarım</div>
-</div>
 </section>
 
 <section id="projects">
 <h2>Projelerim</h2>
 <div class="cards">
-<div class="card">Kişisel Blog</div>
-<div class="card">Portfolyo Sitesi</div>
-<div class="card">Mini Web Uygulaması</div>
+<a href="proje1.html">
+<div class="card">
+<h3>Portfolyo Sitesi</h3>
+<p>Modern tasarım.</p>
+</div>
+</a>
+
+<a href="proje2.html">
+<div class="card">
+<h3>Mini Web App</h3>
+<p>JavaScript uygulaması.</p>
+</div>
+</a>
 </div>
 </section>
 
+<section id="contact">
+<h2>İletişim</h2>
+<p>Email: dilabeybs3474@gmail.com</p>
+</section>
+
 <footer>
-© 2026 Dila Nisa
+© 2026 Neso
 <div class="social">
-<a href="#">Instagram</a>
-<a href="#">GitHub</a>
-<a href="#">LinkedIn</a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-github"></i></a>
+<a href="#"><i class="fab fa-linkedin"></i></a>
 </div>
 </footer>
-
-<script>
-/* NAVBAR SCROLL EFEKT */
-window.addEventListener("scroll",function(){
-let nav=document.getElementById("navbar");
-if(window.scrollY>50){
-nav.classList.add("scrolled");
-}else{
-nav.classList.remove("scrolled");
-}
-});
-
-/* SECTION ANIMATION */
-let sections=document.querySelectorAll("section");
-
-window.addEventListener("scroll",()=>{
-sections.forEach(sec=>{
-let position=sec.getBoundingClientRect().top;
-if(position<window.innerHeight-100){
-sec.classList.add("show");
-}
-});
-});
-</script>
 
 </body>
 </html>
